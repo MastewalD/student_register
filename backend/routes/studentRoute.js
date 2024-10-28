@@ -12,4 +12,4 @@ router.put("/:id", studentController.updateStudent);
 
 router.delete("/:id", studentController.deleteStudent);
 
-module.exports = studentRouter;
+module.exports = router;
