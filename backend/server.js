@@ -1,10 +1,15 @@
 const express = require("express")
 const connectDB = require("./config/db.js")
+const studentRouter = require("./routes/studentRoute.js")
+const courseRoute = require("./routes/courseRoute.js")
 require("dotenv").config()
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 const app = express()
 connectDB()
-
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use("/student",studentRouter)
+app.use("/course",courseRoute)
 app.listen(port,()=>{
     console.log(`server run on port ${port}`)
 })
