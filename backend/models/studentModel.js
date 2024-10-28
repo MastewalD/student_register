@@ -9,6 +9,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    age: {
+        type: Number,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -40,6 +44,21 @@ const studentSchema = new mongoose.Schema({
         },
         zip: {
             type: String,
+        },
+    },
+    emergencyContact: {
+        name: {
+            type: String,
+            required: true,
+        },
+        phoneNumber: {
+            type: String,
+            match: /^[0-9]{10}$/,
+            required: true,
+        },
+        relationship: {
+            type: String,
+            required: true,
         },
     },
 },{timestamps:true});
