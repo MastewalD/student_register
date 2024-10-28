@@ -1,0 +1,32 @@
+# Node.js dependencies
+frontend/node_modules/
+backend/node_modules/
+
+# Build output
+frontend/build/
+backend/build/
+
+# Logs
+*.log
+
+# Environment files
+frontend/.env
+backend/.env
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor specific files
+frontend/.vscode/
+backend/.vscode/
+frontend/.idea/
+backend/.idea/
+
+# Ignore coverage reports
+frontend/coverage/
+backend/coverage/
