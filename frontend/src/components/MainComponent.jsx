@@ -2,6 +2,7 @@
 import React from 'react';
 import StudentList from "../pages/StudentList"
 import StudentRegistration from "../pages/StudentRegistration"
+import SignOut from '../pages/SignOut';
 const MainContent = ({ selected }) => {
     switch (selected) {
         case 'dashboard':
@@ -11,7 +12,7 @@ const MainContent = ({ selected }) => {
         case 'listStudent':
             return <StudentList/>;
         case 'logout':
-            return <h1>You have logged out.</h1>;
+            return <SignOut/>;
         default:
             return <h1>Welcome! Please select an option.</h1>;
     }

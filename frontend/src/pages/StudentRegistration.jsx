@@ -6,7 +6,6 @@ import "./studentRegister.css";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-// Define the validation schema
 const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
     middleName: yup.string().required('Middle name is required'),
@@ -55,7 +54,6 @@ const StudentRegistration = () => {
     }, []);
 
     const onSubmit = async (data) => {
-        console.log(data)
         try {
             const response = await axios.post("http://localhost:5000/api/v1/student/", data);
             console.log("Data submitted successfully:", response.data);
@@ -88,7 +86,7 @@ const StudentRegistration = () => {
             animate={{ opacity: 1, x: 50 }}
             exit={{ opacity: 0 }}
         >
-            <h2>Student Registration</h2>
+            <h2>Register Student</h2>
             <div className="form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>

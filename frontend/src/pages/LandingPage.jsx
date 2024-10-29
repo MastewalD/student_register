@@ -1,21 +1,20 @@
-import React from 'react'
-import {motion} from "framer-motion"
-function LandingPage() {
-  return (
-    <div>
-      <h1>this is landing page</h1>
-      <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 ,x: 500}}
-            exit={{ opacity: 0 }}
-        >
-            <h1> WELCOME TO, MD!</h1>
-        </motion.div>
-       
-      <div>one</div>
+import React from 'react';
+import "./Landing.css";
+import { motion } from 'framer-motion';
+import Signin from './Signin';
+import educationeImage from '../assets/educations.jpg'; 
 
-    </div>
-  )
+function LandingPage() {
+    return (
+        <div className='land'>
+            <div className="image"  >
+             <img src={educationeImage} alt="" />
+            </div>
+            <div className="login">
+              <Signin />
+              </div>
+        </div>
+    );
 }
 
-export default LandingPage
+export default LandingPage;

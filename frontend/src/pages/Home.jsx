@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainComponent';
@@ -9,7 +8,10 @@ const Home = () => {
 
     return (
         <div className="app-container">
-            <Sidebar onSelect={setSelected} />
+            <div className='sidebar'>
+                <Sidebar onSelect={setSelected} />
+            </div>
+            
             <div className="content">
                 <MainContent selected={selected} />
             </div>

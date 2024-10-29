@@ -1,6 +1,13 @@
-// src/Sidebar.js
 import React, { useState } from 'react';
-import './Sidebar.css'; // Import CSS for styling
+import './Sidebar.css'; 
+import { MdDashboardCustomize } from "react-icons/md";
+import { CiBoxList } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
+import { CiSettings } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
+import { IoMdCreate } from "react-icons/io";
+import { FaExpandAlt } from "react-icons/fa";
+import { ImShrink2 } from "react-icons/im";
 
 const Sidebar = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -11,15 +18,36 @@ const Sidebar = ({ onSelect }) => {
 
     return (
         <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-            <button className="toggle-button" onClick={toggleSidebar}>
-                {isOpen ? '<<' : '>>'}
-            </button>
-            <nav>
+            <div className="toggle-button" onClick={toggleSidebar}>
+                {isOpen ? <ImShrink2/> : <FaExpandAlt/>}
+            </div>
+            <div className='side'>
+                <div>
+                <MdDashboardCustomize />
                 <button onClick={() => onSelect('dashboard')}>Dashboard</button>
-                <button onClick={() => onSelect('registerStudent')}>Register Student</button>
-                <button onClick={() => onSelect('listStudent')}>List Student</button>
-                <button onClick={() => onSelect('logout')}>Logout</button>
-            </nav>
+                </div>
+                <div>
+                    <IoMdCreate/>
+                    <button onClick={() => onSelect('registerStudent')}>Register Student</button>
+                </div>
+                <div>
+                    <CiBoxList/>
+                    <button onClick={() => onSelect('listStudent')}>List Student</button>
+                </div>
+                <div>
+                    <CiSettings/>
+                    <button onClick={() => onSelect('logout')}>Setting</button>
+                </div>
+                <div>
+                    <MdDarkMode/>
+                    <button onClick={() => onSelect('logout')}>DarkMode</button>
+                </div>
+                <div>
+                    <CiLogout/>
+                    <button onClick={() => onSelect('logout')}>Logout</button>
+                </div>
+                
+            </div>
         </div>
     );
 };
