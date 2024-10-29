@@ -35,10 +35,15 @@ const Signin = () => {
 
             
             if (response.status === 200) {
-              
+                
                 localStorage.setItem('token', response.data.token);
-              
-                navigate('/home');
+           
+            const token = localStorage.getItem('token');
+            
+            setTimeout(() => {
+                navigate("/home")
+            }, 1000);
+                
             }
         } catch (error) {
            
@@ -55,10 +60,10 @@ const Signin = () => {
     return (
         <motion.div 
             initial={{ opacity: 0 ,x:0}}
-            animate={{ opacity: 1, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
             className="signin-container">
-            <h2>Sign In</h2>
+            <h2>Log In</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <input
@@ -77,9 +82,13 @@ const Signin = () => {
                     {errors.password && <p className="error">{errors.password.message}</p>}
                 </div>
                 {errorMessage && <p className="error">{errorMessage}</p>}
-                <button type="submit" disabled={loading}>
+                <motion.button
+                initial={{ opacity: 0 ,x:0}}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                type="submit" disabled={loading}>
                     {loading ? 'Signing in...' : 'Sign In'}
-                </button>
+                </motion.button>
             </form>
         </motion.div>
     );

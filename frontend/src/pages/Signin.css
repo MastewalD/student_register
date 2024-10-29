@@ -1,0 +1,47 @@
+.signin-container {
+    max-width: 400px;
+    margin: 50px auto; 
+    padding: 20px;
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+}
+
+input:focus {
+    border-color: #376d60; 
+    outline: none; 
+}
+
+button {
+    padding: 10px;
+    background-color: #376d60; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+button:hover {
+    background-color: #ccc; 
+    
+}
+
+.error {
+    color: red;
+    font-size: 14px; 
+}
