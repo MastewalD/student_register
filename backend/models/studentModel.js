@@ -5,12 +5,17 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    middleName: {
+        type: String,
+        required: true,
+    },
     lastName: {
         type: String,
         required: true,
     },
-    age: {
-        type: Number,
+    gender: {
+        type: String,
+        enum: ['female','male'],
         required: true,
     },
     email: {
@@ -18,11 +23,6 @@ const studentSchema = new mongoose.Schema({
         required: true,
         unique: true,
         match: /.+\@.+\..+/,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 6,
     },
     dateOfBirth: {
         type: Date,
@@ -35,16 +35,16 @@ const studentSchema = new mongoose.Schema({
     address: {
         street: {
             type: String,
+            required: true
         },
         city: {
             type: String,
+            required: true
         },
-        state: {
+        country: {
             type: String,
-        },
-        zip: {
-            type: String,
-        },
+            required: true
+        }
     },
     emergencyContact: {
         name: {
@@ -59,8 +59,13 @@ const studentSchema = new mongoose.Schema({
         relationship: {
             type: String,
             required: true,
-        },
+        }
     },
+    courses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course",
+        required: true
+    }]
 },{timestamps:true});
 
 

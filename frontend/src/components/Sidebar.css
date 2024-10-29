@@ -8,11 +8,17 @@
 }
 
 .sidebar.closed {
-    width: 50px;
+    width: 30px;
+}
+.sidebar.closed nav {
+    display: none;
+   
 }
 
 .toggle-button {
-    background: #444;
+    position:sticky;
+    left:155px;
+    background: #666a69;
     color: white;
     border: none;
     padding: 10px;
