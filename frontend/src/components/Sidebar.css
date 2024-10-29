@@ -1,0 +1,39 @@
+/* src/Sidebar.css */
+.sidebar {
+    width: 200px;
+    background: #333;
+    color: white;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.sidebar.closed {
+    width: 50px;
+}
+
+.toggle-button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+button {
+    margin: 5px 0;
+    background: #555;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #666;
+}

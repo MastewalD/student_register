@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import "./studentRegister.css";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
+    middleName: yup.string().required('Middle name is required'),
     lastName: yup.string().required('Last name is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
@@ -13,8 +15,7 @@ const schema = yup.object().shape({
     address: yup.object().shape({
         street: yup.string(),
         city: yup.string(),
-        state: yup.string(),
-        zip: yup.string().matches(/^[0-9]{5}$/, 'ZIP code must be 5 digits'),
+        country: yup.string(),
     }),
     emergencyContact: yup.object().shape({
         name: yup.string().required('Emergency contact name is required'),
@@ -29,74 +30,74 @@ const StudentRegistration = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+        console.log(data); // This should log the form data
     };
 
     return (
-        <div>
+        <div className='register'>
             <h2>Student Registration</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label>First Name</label>
-                    <input {...register('firstName')} />
-                    {errors.firstName && <p>{errors.firstName.message}</p>}
-                </div>
-                <div>
-                    <label>Last Name</label>
-                    <input {...register('lastName')} />
-                    {errors.lastName && <p>{errors.lastName.message}</p>}
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" {...register('email')} />
-                    {errors.email && <p>{errors.email.message}</p>}
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" {...register('password')} />
-                    {errors.password && <p>{errors.password.message}</p>}
-                </div>
-                <div>
-                    <label>Date of Birth</label>
-                    <input type="date" {...register('dateOfBirth')} />
-                    {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
-                </div>
-                <div>
-                    <label>Phone Number</label>
-                    <input {...register('phoneNumber')} />
-                    {errors.phoneNumber && <p>{errors.phoneNumber.message}</p>}
-                </div>
-                <div>
-                    <h3>Address</h3>
-                    <label>Street</label>
-                    <input {...register('address.street')} />
+            <div className="form">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <h3>Student Information</h3>
+                        <div className='one'>
+                            <div>
+                                <input placeholder='First Name' {...register('firstName')} />
+                                {errors.firstName && <p>{errors.firstName.message}</p>}
+                            </div>
+
+                            <div>
+                                <input placeholder='Middle Name' {...register('middleName')} />
+                                {errors.middleName && <p>{errors.middleName.message}</p>}
+                            </div>
+
+                            <div>
+                                <input placeholder='Last Name' {...register('lastName')} />
+                                {errors.lastName && <p>{errors.lastName.message}</p>}
+                            </div>
+                        </div>
+                        
+                        <div className='one'>
+                            <div>
+                                <input placeholder='Email' type="email" {...register('email')} />
+                                {errors.email && <p>{errors.email.message}</p>}
+                            </div>
                     
-                    <label>City</label>
-                    <input {...register('address.city')} />
+                            <div>
+                                <input placeholder='Phone Number' {...register('phoneNumber')} />
+                                {errors.phoneNumber && <p>{errors.phoneNumber.message}</p>}
+                            </div>
+                            <div>
+                                <input placeholder='Birth Date' type="date" {...register('dateOfBirth')} />
+                                {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3>Address</h3>
+                            <input placeholder='Street Address' {...register('address.street')} />
+                            <input placeholder='City' {...register('address.city')} />
+                            <input placeholder='Country' {...register('address.country')} />
+                        </div>
                     
-                    <label>State</label>
-                    <input {...register('address.state')} />
-                    
-                    <label>ZIP Code</label>
-                    <input {...register('address.zip')} />
-                    {errors.address?.zip && <p>{errors.address.zip.message}</p>}
-                </div>
-                <div>
-                    <h3>Emergency Contact</h3>
-                    <label>Name</label>
-                    <input {...register('emergencyContact.name')} />
-                    {errors.emergencyContact?.name && <p>{errors.emergencyContact.name.message}</p>}
-                    
-                    <label>Phone Number</label>
-                    <input {...register('emergencyContact.phoneNumber')} />
-                    {errors.emergencyContact?.phoneNumber && <p>{errors.emergencyContact.phoneNumber.message}</p>}
-                    
-                    <label>Relationship</label>
-                    <input {...register('emergencyContact.relationship')} />
-                    {errors.emergencyContact?.relationship && <p>{errors.emergencyContact.relationship.message}</p>}
-                </div>
-                <button type="submit">Register</button>
-            </form>
+                        <div>
+                            <h3>Emergency Contact</h3>
+                            <input placeholder='Name' {...register('emergencyContact.name')} />
+                            {errors.emergencyContact?.name && <p>{errors.emergencyContact.name.message}</p>}
+                            
+                            <input placeholder='Phone Number' {...register('emergencyContact.phoneNumber')} />
+                            {errors.emergencyContact?.phoneNumber && <p>{errors.emergencyContact.phoneNumber.message}</p>}
+                                  
+                            <input placeholder='Relation' {...register('emergencyContact.relationship')} />
+                            {errors.emergencyContact?.relationship && <p>{errors.emergencyContact.relationship.message}</p>}
+                        </div>
+                        <div>
+                            <h3>Courses</h3>
+                        </div>
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

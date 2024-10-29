@@ -8,7 +8,8 @@ const StudentList = () => {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/students'); 
+                const response = await fetch('http://localhost:5000/api/v1/student');; 
+                console.log(response)
                 if (!response.ok) {
                     throw new Error('Failed to fetch students');
                 }
