@@ -21,11 +21,9 @@ The Student Registration Project is a fictional web application designed for man
 - **Backend**: 
   - Node.js
   - Express.js
-  - Passport JWT
-  - Bcrypt
 - **Database**: MongoDB
 - **Styling**: CSS
-- **Authentication**: JSON Web Tokens (JWT)
+- **Authentication**: JSON Web Tokens (JWT),Bcrypt
 
 ## Installation Steps
 
