@@ -68,14 +68,8 @@ MD COLLEGE Project is a web application designed for managing student registrati
 - 🖥️ **Node.js**: Version 14 or higher.
 - 🗄️ **MongoDB**: Local installation or a MongoDB Atlas account.
 
-## Contribution
-
-🤝 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 
 ## License
 
 📄 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgements
-
-🙏 Thank you to all the contributors and libraries that made this project possible.
