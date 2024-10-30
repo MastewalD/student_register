@@ -23,7 +23,7 @@ MD COLLEGE Project is a web application designed for managing student registrati
   - Express.js
 - **Database**: MongoDB
 - **Styling**: CSS
-- **Authentication**: JSON Web Tokens (JWT),Bcrypt
+- **Authentication && Security**: Passport,JSON Web Tokens (JWT),Bcrypt
 
 ## Installation Steps
 
