@@ -18,6 +18,8 @@ MD COLLEGE Project is a web application designed for managing student registrati
   - ⚛️ React.js
   - 📦 React Icons
   - 🎨 Framer Motion
+  - 📦react-chartjs-2
+  - 🔑 yup
 - **Backend**: 
   - 💻 Node.js
   - 🖥️ Express.js
