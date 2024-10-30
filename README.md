@@ -26,7 +26,9 @@ MD COLLEGE Project is a web application designed for managing student registrati
 - **Database**: 🗄️ MongoDB
 - **Styling**: 🎨 CSS
 - **Authentication & Security**: 🔑 Passport, JSON Web Tokens (JWT), Bcrypt
+## API Documentation
 
+You can view and interact with the API using Postman: [MD College API Collection](https://www.postman.com/yourcollectionlink)
 ## Installation Steps
 
 1. **Install Node.js and npm** on your device.
