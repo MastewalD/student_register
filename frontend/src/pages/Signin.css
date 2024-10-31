@@ -5,10 +5,11 @@
     border: 1px solid #ccc; 
     border-radius: 8px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
-    background-color: #fff; 
+    background-color: #fff;
+    
 }
 
-form {
+.LoginForm {
     display: flex;
     flex-direction: column; 
 }
@@ -28,7 +29,7 @@ input:focus {
 
 button {
     padding: 10px;
-    background-color: #376d60; 
+    background-color: #568C8C; 
     color: #fff; 
     border: none; 
     border-radius: 5px; 
@@ -40,6 +41,7 @@ button:hover {
     background-color: #ccc; 
     
 }
+
 
 .error {
     color: red;

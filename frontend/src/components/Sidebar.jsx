@@ -1,52 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Sidebar.css'; 
 import { MdDashboardCustomize } from "react-icons/md";
-import { CiBoxList } from "react-icons/ci";
-import { CiLogout } from "react-icons/ci";
-import { CiSettings } from "react-icons/ci";
-import { MdDarkMode } from "react-icons/md";
+import { CiBoxList, CiLogout, CiSettings } from "react-icons/ci";
 import { IoMdCreate } from "react-icons/io";
-import { FaExpandAlt } from "react-icons/fa";
-import { ImShrink2 } from "react-icons/im";
 
-const Sidebar = ({ onSelect }) => {
-    const [isOpen, setIsOpen] = useState(true);
-
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    };
-
+const Sidebar = ({ onSelect, isExpanded }) => {
     return (
-        <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-            <div className="toggle-button" onClick={toggleSidebar}>
-                {isOpen ? <ImShrink2/> : <FaExpandAlt/>}
-            </div>
+        <div className={`sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}>
             <div className='side'>
-                <div>
-                <MdDashboardCustomize />
-                <button onClick={() => onSelect('dashboard')}>Dashboard</button>
+                <div className="sidebar-item" onClick={() => onSelect('dashboard')}>
+                    <MdDashboardCustomize />
+                    {isExpanded && <span>Dashboard</span>}
                 </div>
-                <div>
-                    <IoMdCreate/>
-                    <button onClick={() => onSelect('registerStudent')}>Register Student</button>
+                <div className="sidebar-item" onClick={() => onSelect('registerStudent')}>
+                    <IoMdCreate />
+                    {isExpanded && <span>Register Student</span>}
                 </div>
-                <div>
-                    <CiBoxList/>
-                    <button onClick={() => onSelect('listStudent')}>List Student</button>
+                <div className="sidebar-item" onClick={() => onSelect('listStudent')}>
+                    <CiBoxList />
+                    {isExpanded && <span>List Student</span>}
                 </div>
-                <div>
-                    <CiSettings/>
-                    <button onClick={() => onSelect('logout')}>Setting</button>
+                <div className="sidebar-item" onClick={() => onSelect('settings')}>
+                    <CiSettings />
+                    {isExpanded && <span>Settings</span>}
                 </div>
-                <div>
-                    <MdDarkMode/>
-                    <button onClick={() => onSelect('logout')}>DarkMode</button>
+                <div className="sidebar-item" onClick={() => onSelect('logout')}>
+                    <CiLogout />
+                    {isExpanded && <span>Logout</span>}
                 </div>
-                <div>
-                    <CiLogout/>
-                    <button onClick={() => onSelect('logout')}>Logout</button>
-                </div>
-                
             </div>
         </div>
     );

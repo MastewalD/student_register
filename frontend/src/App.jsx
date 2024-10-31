@@ -1,36 +1,54 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from './context/AuthContext';
+import React, { useState, useEffect } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Signin from "./pages/Signin";
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
+import ProtectedRoute from './components/ProtectedRoute'; 
+import NotFound from "./pages/NotFound";
 
 function App() {
-    // Check if the user is logged in by looking for a token in local storage
-    const isLoggedIn = localStorage.getItem('token') !== null;
+    const [isGrayMode, setIsGrayMode] = useState(false);
+
+    useEffect(() => {
+        const savedMode = localStorage.getItem('grayMode');
+        if (savedMode === 'true') {
+            setIsGrayMode(true);
+        }
+    }, []);
+
+    const toggleGrayMode = () => {
+        setIsGrayMode(prevMode => {
+            const newMode = !prevMode;
+            localStorage.setItem('grayMode', newMode);
+            return newMode;
+        });
+    };
 
     return (
-        <Router>
-            <nav>
-                <Navbar />
-            </nav>
-            <div className="app-container">
-                <main>
-                    <Routes>
-                        <Route index element={<LandingPage />} />
-                        <Route 
-                            path='/home' 
-                            element={isLoggedIn ? <Home /> : <Navigate to="/" />} // Redirect to landing page if not logged in
-                        />
-                        <Route path='/signup' element={<Signup />} />
-                        <Route path='/signin' element={<Signin />} />
-                    </Routes>
-                </main>
-            </div>
-            <Footer />
-        </Router>
+        <AuthProvider>
+            <Router>
+                <nav>
+                    <Navbar toggleGrayMode={toggleGrayMode} isGrayMode={isGrayMode} />
+                </nav>
+                <div className={`app-container ${isGrayMode ? 'gray-mode' : 'light-mode'}`}>
+                    <main>
+                        <Routes>
+                            <Route index element={<LandingPage />} />
+                            <Route 
+                                path='/home' 
+                                element={<ProtectedRoute element={<Home />} />} 
+                            />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </main>
+                </div>
+                <Footer />
+            </Router>
+        </AuthProvider>
     );
 }
 

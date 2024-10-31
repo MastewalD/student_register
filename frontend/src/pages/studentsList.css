@@ -1,4 +1,50 @@
-.buttons{
+
+.studentList{
     display: flex;
-    gap:10px ;
+    flex-direction: column;
+    align-items: center;
+
+    height: calc(100vh - 150px);
+    padding: 20px;
+}
+.table {
+    border-collapse: collapse; 
+}
+h2{
+    color: #2D3E40;
+}
+
+.table th {
+    color: #2D3E40;
+    background-color: #f2f2f2; 
+    border: 1px solid #437373; 
+    padding: 6px; 
+    text-align: left;
+}
+
+
+.table td {
+    color: #2D3E40;
+    border: 1px solid #437373; 
+    padding: 6px; 
+    max-width: 150px; 
+    overflow: hidden; 
+    word-wrap: break-word; 
+    vertical-align: top;
+}
+
+
+.table td:hover {
+    background-color: #93BFB7; 
+}
+.action{
+
+   display: flex;
+   gap: 10px;
+
+}
+.buttons{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
 }

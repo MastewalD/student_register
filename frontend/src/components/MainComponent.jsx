@@ -1,12 +1,12 @@
-// src/MainContent.js
 import React from 'react';
 import StudentList from "../pages/StudentList"
 import StudentRegistration from "../pages/StudentRegistration"
 import SignOut from '../pages/SignOut';
+import Dashboard from '../pages/Dashboard';
 const MainContent = ({ selected }) => {
     switch (selected) {
         case 'dashboard':
-            return <h1>Dashboard Content</h1>;
+            return <Dashboard/>;
         case 'registerStudent':
             return <StudentRegistration />;
         case 'listStudent':

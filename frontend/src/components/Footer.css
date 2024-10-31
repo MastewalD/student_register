@@ -6,6 +6,8 @@
     color: #437373; 
     padding: 10px 20px; 
     text-align: center; 
-    z-index: 1000; 
+    z-index: 1000;
+    /* color: white; */
+    /* background-color: rgb(85, 126, 122); */
    
 }

@@ -3,6 +3,10 @@ const router = express.Router();
 const studentController = require("../controllers/studentController");
 
 router.post("/", studentController.createStudent);
+router.post("/enroll", studentController.enrollStudentInCourse);
+router.get('/stats', studentController.getStudentStats);
+
+router.get('/courses/stats', studentController.getCourseStats);
 
 router.get("/", studentController.getAllStudents);
 

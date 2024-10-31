@@ -5,6 +5,8 @@ import axios from "axios";
 import "./studentRegister.css";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import SuccessRegistration from '../components/SuccessRegisteration'; 
+
 
 const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
@@ -15,9 +17,9 @@ const schema = yup.object().shape({
     phoneNumber: yup.string().matches(/^[0-9]{10}$/, 'Phone number must be 10 digits').required('Phone number is required'),
     gender: yup.string().oneOf(['male', 'female'], 'Gender is required').required('Gender is required'),
     address: yup.object().shape({
-        street: yup.string(),
-        city: yup.string(),
-        country: yup.string(),
+        street: yup.string().required('Street is required'),
+        city: yup.string().required('City is required'),
+        country: yup.string().required('Country is required'),
     }),
     emergencyContact: yup.object().shape({
         name: yup.string().required('Emergency contact name is required'),
@@ -31,12 +33,13 @@ const StudentRegistration = () => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema)
     });
-    
+
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCourses, setSelectedCourses] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -49,7 +52,6 @@ const StudentRegistration = () => {
                 setLoading(false);
             }
         };
-
         fetchCourses();
     }, []);
 
@@ -57,6 +59,7 @@ const StudentRegistration = () => {
         try {
             const response = await axios.post("http://localhost:5000/api/v1/student/", data);
             console.log("Data submitted successfully:", response.data);
+            setSuccess(true); 
         } catch (err) {
             console.error("Error submitting data:", err);
         }
@@ -81,69 +84,59 @@ const StudentRegistration = () => {
     };
 
     return (
-        <motion.div className='register'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, x: 50 }}
-            exit={{ opacity: 0 }}
-        >
-            <h2>Register Student</h2>
-            <div className="form">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <h3>Student Information</h3>
-                        <div className='one'>
-                            <div>
+        <motion.div className='register'>
+            {success && <SuccessRegistration />} 
+
+            {!success && (
+                <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="cards">
+                        <div className='RegiCard'>
+                            <h3>Student Information</h3>
+                            <div className='input-group'>
                                 <input placeholder='First Name' {...register('firstName')} />
                                 {errors.firstName && <p className="error">{errors.firstName.message}</p>}
-                            </div>
-                            <div>
                                 <input placeholder='Middle Name' {...register('middleName')} />
                                 {errors.middleName && <p className="error">{errors.middleName.message}</p>}
-                            </div>
-                            <div>
                                 <input placeholder='Last Name' {...register('lastName')} />
                                 {errors.lastName && <p className="error">{errors.lastName.message}</p>}
-                            </div>
-                        </div>
-                        <div className='one'>
-                            <div>
                                 <input placeholder='Email' type="email" {...register('email')} />
                                 {errors.email && <p className="error">{errors.email.message}</p>}
-                            </div>
-                            <div>
                                 <input placeholder='Phone Number' {...register('phoneNumber')} />
                                 {errors.phoneNumber && <p className="error">{errors.phoneNumber.message}</p>}
-                            </div>
-                            <div>
-                            <select {...register('gender')}>
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                            {errors.gender && <p className="error">{errors.gender.message}</p>}
-                        </div>
-                            <div>
+                                <select {...register('gender')}>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                {errors.gender && <p className="error">{errors.gender.message}</p>}
                                 <input placeholder='Birth Date' type="date" {...register('dateOfBirth')} />
                                 {errors.dateOfBirth && <p className="error">{errors.dateOfBirth.message}</p>}
                             </div>
                         </div>
-                        
-                        <div>
+
+                        <div className="RegiCard">
                             <h3>Address</h3>
-                            <input placeholder='Street Address' {...register('address.street')} />
-                            <input placeholder='City' {...register('address.city')} />
-                            <input placeholder='Country' {...register('address.country')} />
-                        </div>
-                        <div>
+                            <div className='input-group'>
+                                <input placeholder='Street Address' {...register('address.street')} />
+                                {errors.address?.street && <p className="error">{errors.address.street.message}</p>}
+                                <input placeholder='City' {...register('address.city')} />
+                                {errors.address?.city && <p className="error">{errors.address.city.message}</p>}
+                                <input placeholder='Country' {...register('address.country')} />
+                                {errors.address?.country && <p className="error">{errors.address.country.message}</p>}
+                            </div>
+
                             <h3>Emergency Contact</h3>
-                            <input placeholder='Name' {...register('emergencyContact.name')} />
-                            {errors.emergencyContact?.name && <p className="error">{errors.emergencyContact.name.message}</p>}
-                            <input placeholder='Phone Number' {...register('emergencyContact.phoneNumber')} />
-                            {errors.emergencyContact?.phoneNumber && <p className="error">{errors.emergencyContact.phoneNumber.message}</p>}
-                            <input placeholder='Relation' {...register('emergencyContact.relationship')} />
-                            {errors.emergencyContact?.relationship && <p className="error">{errors.emergencyContact.relationship.message}</p>}
+                            <div className='input-group'>
+                                <input placeholder='Name' {...register('emergencyContact.name')} />
+                                {errors.emergencyContact?.name && <p className="error">{errors.emergencyContact.name.message}</p>}
+                                <input placeholder='Phone Number' {...register('emergencyContact.phoneNumber')} />
+                                {errors.emergencyContact?.phoneNumber && <p className="error">{errors.emergencyContact.phoneNumber.message}</p>}
+                                <input placeholder='Relation' {...register('emergencyContact.relationship')} />
+                                {errors.emergencyContact?.relationship && <p className="error">{errors.emergencyContact.relationship.message}</p>}
+                            </div>
                         </div>
-                        <div>
+
+                        <div className='RegiCard'>
                             <h3>Courses</h3>
                             <input
                                 type="text"
@@ -151,7 +144,7 @@ const StudentRegistration = () => {
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            <div className="course-dropdown" style={{ maxHeight: '150px', overflowY: 'scroll', border: '1px solid #ccc', borderRadius: '4px', padding: '5px' }}>
+                            <div className="course-dropdown">
                                 {filteredCourses.map(course => (
                                     <div key={course._id} className="course-option">
                                         <label>
@@ -167,10 +160,11 @@ const StudentRegistration = () => {
                             </div>
                             {errors.courses && <p className="error">{errors.courses.message}</p>}
                         </div>
-                        <button type="submit">Register</button>
                     </div>
+
+                    <button className="registerButton" type="submit">Register</button>
                 </form>
-            </div>
+            )}
         </motion.div>
     );
 };
