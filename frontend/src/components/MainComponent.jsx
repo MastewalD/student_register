@@ -5,16 +5,16 @@ import SignOut from '../pages/SignOut';
 import Dashboard from '../pages/Dashboard';
 import UpdateStudent from '../pages/UpdateStudent';
 
-
 const MainContent = ({ selected, isSidebarExpanded }) => {
     const contentStyle = {
-        
+       
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: isSidebarExpanded ? 'calc(100vw - 300px)' : 'calc(100vw - 120px)',
+        justifyContent: "flex-start", 
+        alignItems: "center", 
+        width: isSidebarExpanded ? 'calc(100% - 200px)' : 'calc(100% - 120px)', 
         transition: 'width 0.3s ease', 
+        flexGrow: 1, 
     };
 
     return (

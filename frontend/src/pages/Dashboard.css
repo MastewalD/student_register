@@ -1,10 +1,18 @@
 .dashboard{
     height: calc(100vh - 150px);
-    width: calc(100vw - 300px);
+    width: calc(100vw - 400px);
+   
     
 }
-.card {
+.cards-container{
     display: flex;
+   
+    align-items: center;
+    justify-content: center;
+}
+.dashboardCard {
+    display: flex;
+    background-color: orange;
     align-items: center;
     padding: 20px;
     margin: 10px;

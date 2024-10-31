@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({ title, icon: Icon, amount }) => {
     return (
-        <div className="card">
+        <div className="dashboardCard">
             <div className="card-icon">
                 <Icon size={40} />
             </div>

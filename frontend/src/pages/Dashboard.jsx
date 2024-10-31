@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { FaUserFriends, FaMale, FaFemale } from 'react-icons/fa'; 
 import Card from '../components/Card.jsx';
@@ -47,10 +46,10 @@ const Dashboard = () => {
         fetchStudentStats();
         fetchCourseStats();
         
-        setLoading(false); // Set loading to false after fetching both stats
+        setLoading(false);
     }, []);
 
-    // Loading and error handling
+    
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
