@@ -45,7 +45,7 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
 3. **Create a `.env` file** in the root directory in backend folder .
 4. **Set up a MongoDB server** (local installation or MongoDB Atlas) and obtain the MongoDB URI.
 5. **Add environment variables** to the `.env` file:
-    - `MONGO_URI`: Your MongoDB connection string.
+    - `MONGODB`: Your MongoDB connection string.
     - `PORT`: Set to `5000`.
     - `JWT_SECRET`: A secure string of your choice.
 6. **Install dependencies** for both frontend and backend:
