@@ -18,7 +18,7 @@ MD COLLEGE Project is a web application designed for managing student registrati
   - ⚛️ React.js
   - 📦 React Icons
   - 🎨 Framer Motion
-  - 📦react-chartjs-2
+  - 📦 react-chartjs-2
   - 🔑 yup
 - **Backend**: 
   - 💻 Node.js
@@ -26,9 +26,15 @@ MD COLLEGE Project is a web application designed for managing student registrati
 - **Database**: 🗄️ MongoDB
 - **Styling**: 🎨 CSS
 - **Authentication & Security**: 🔑 Passport, JSON Web Tokens (JWT), Bcrypt
+
 ## API Documentation
 
 You can view and interact with the API using Postman: [MD College API Collection](https://www.postman.com/yourcollectionlink)
+
+## Live Deployment
+
+You can access the deployed project here: [MD College Live](https://dreamy-sprite-be3c9d.netlify.app/).
+
 ## Installation Steps
 
 1. **Install Node.js and npm** on your device.
@@ -72,8 +78,6 @@ You can view and interact with the API using Postman: [MD College API Collection
 - 🖥️ **Node.js**: Version 14 or higher.
 - 🗄️ **MongoDB**: Local installation or a MongoDB Atlas account.
 
-
 ## License
 
 📄 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
