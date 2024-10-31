@@ -1,8 +1,8 @@
-# 📚 Student Registration Project
+# 📚 MD COLLEGE Project
 
 ## Overview
 
-MD COLLEGE Project is a web application designed for managing student registrations at a college called MD (not real). Built using the MERN stack (MongoDB, Express.js, React.js, Node.js), this application allows users to log in as admins, register new students, view registration statistics with engaging graphs and cards, and access detailed information about registered students.
+MD COLLEGE Project is a web application designed for managing student registrations at a college called MD (not real). Built using the MERN stack (MongoDB, Express.js, React.js, Node.js), this application allows users to log in as admin, register new students, view registration statistics with engaging graphs and cards, and access detailed information about registered students.
 
 ## Features
 
