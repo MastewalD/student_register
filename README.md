@@ -39,7 +39,7 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
 1. **Install Node.js and npm** on your device.
 2. **Clone the repository** to your local machine:
     ```bash
-    git clone https://github.com/yourusername/student-registration.git
+    git clone https://github.com/MastewalD/student_register.git
     cd student-registration
     ```
 3. **Create a `.env` file** in the root directory.
