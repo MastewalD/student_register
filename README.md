@@ -1,4 +1,4 @@
-# 📚 Student Registration Project
+# 📚 MD COLLEGE Project
 
 ## Overview
 
