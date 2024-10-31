@@ -1,4 +1,4 @@
-# 📚 MD COLLEGE Project
+# 📚 MD COLLEGE 
 
 ## Overview
 
