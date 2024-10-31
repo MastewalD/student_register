@@ -9,7 +9,6 @@ MD COLLEGE Project is a web application designed for managing student registrati
 - 🔒 **User Authentication**: Secure login for admins.
 - ✍️ **Student Registration**: Easily register new students.
 - 📊 **Admin Dashboard**: View registered students and statistics.
-- 📱 **Responsive Design**: Optimized for both desktop and mobile devices.
 - 🌐 **RESTful API**: Full backend functionality for seamless data interaction.
 
 ## Technologies Used
