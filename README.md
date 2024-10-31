@@ -40,7 +40,7 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
 2. **Clone the repository** to your local machine:
     ```bash
     git clone https://github.com/MastewalD/student_register.git
-    cd student-registration
+    cd student-register
     ```
 3. **Create a `.env` file** in the root directory.
 4. **Set up a MongoDB server** (local installation or MongoDB Atlas) and obtain the MongoDB URI.
