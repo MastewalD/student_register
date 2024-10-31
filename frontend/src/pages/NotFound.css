@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100vw - 40px);
-    height: calc(100vh - 150px);
+    width: calc(100vw - 300px);
+    height: calc(100vh - 200px);
     padding: 20px;
 
 }

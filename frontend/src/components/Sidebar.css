@@ -12,6 +12,7 @@
 .side {
     display: flex;
     flex-direction: column; 
+    gap: 10px;
 }
 
 .sidebar-item {
@@ -19,17 +20,19 @@
     align-items: center; 
     padding: 10px 15px; 
     cursor: pointer;
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transition for box shadow */
+    background-color: transparent; /* Default background */
+    border-radius: 8px; /* Add border radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-item:hover {
-    background-color: #93BFB7; 
+    background-color: #A9D4D9; 
 }
 
 .sidebar-item svg {
     font-size: 1.5rem;
     margin-right: 10px; 
-   
 }
 
 .sidebar-item span {

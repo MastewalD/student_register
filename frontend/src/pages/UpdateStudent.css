@@ -1,0 +1,55 @@
+.update {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 300px);
+    height: calc(100vh - 150px);
+    align-items: center;
+    
+  
+}
+
+.searchContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    width: 100%; 
+    margin-bottom: 0; 
+}
+.delete{
+    background-color: red;
+}
+
+.studentList {
+    list-style-type: none;
+    padding: 0;
+    overflow-y:hidden;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    border-radius: 0 0 4px 4px;
+}
+
+.studentItem {
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+}
+
+.studentItem:hover {
+  
+    background-color: #A9D4D9;
+}
+
+.studentItem:active {
+    background-color: #e0e0e0; /* Active state */
+}
+.updateDelete{
+    display: flex;
+    gap: 10px;
+}

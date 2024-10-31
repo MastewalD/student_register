@@ -20,7 +20,7 @@ const Sidebar = ({ onSelect, isExpanded }) => {
                     <CiBoxList />
                     {isExpanded && <span>List Student</span>}
                 </div>
-                <div className="sidebar-item" onClick={() => onSelect('settings')}>
+                <div className="sidebar-item" onClick={() => onSelect('settingS')}>
                     <CiSettings />
                     {isExpanded && <span>Settings</span>}
                 </div>

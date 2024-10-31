@@ -1,13 +1,15 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './SignOut.css'; 
 
 const SignOut = () => {
+    const { logout } = useAuth();
     const navigate = useNavigate();
 
     const handleSignOut = () => {
-        localStorage.removeItem('token');
+        logout()
         navigate('/');
     };
 

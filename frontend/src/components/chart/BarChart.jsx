@@ -21,7 +21,7 @@ const BarChart = ({ data = { labels: [], datasets: [] } }) => {
             {
                 label: 'Number of Students',
                 data: data.map(course => course.count),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                backgroundColor: '#A9D4D9',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
             },

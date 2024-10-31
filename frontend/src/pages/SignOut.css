@@ -17,6 +17,9 @@
     width: 100%; 
 }
 
+.logout{
+    background-color: red;
+}
 
 
 .logout:hover{

@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom'; 
 import { useAuth } from '../context/AuthContext';
 import './Signin.css'; 
@@ -35,18 +34,15 @@ const Signin = () => {
 
             if (response.status === 200) {
                 const { token } = response.data;
-                localStorage.setItem('token', token); // Store token in local storage
-                login(token); // Update authentication state
-
-                setTimeout(() => {
-                    navigate("/home");
-                }, 1000);
+                login(token); 
+                navigate("/home");
+                
             }
         } catch (error) {
             if (error.response && error.response.data) {
-                setErrorMessage(error.response.data.message || 'Login failed');
+                setErrorMessage(error.response.data.error);
             } else {
-                setErrorMessage('An unexpected error occurred');
+                setErrorMessage("An internal server error has occurred. Please try again later.");
             }
         } finally {
             setLoading(false);
@@ -55,7 +51,7 @@ const Signin = () => {
 
     return (
         <div className="signin-container">
-            <h2>Log In</h2>
+            <h2>Sign In</h2>
             <form className='LoginForm' onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <input
@@ -75,7 +71,7 @@ const Signin = () => {
                 </div>
                 {errorMessage && <p className="error">{errorMessage}</p>}
                 <button type="submit" disabled={loading}>
-                    {loading ? 'Signing in...' : 'Sign In'}
+                    {loading ? 'Signing in...' : 'Log In'}
                 </button>
             </form>
         </div>

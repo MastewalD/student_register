@@ -3,6 +3,7 @@ import StudentList from "../pages/StudentList"
 import StudentRegistration from "../pages/StudentRegistration"
 import SignOut from '../pages/SignOut';
 import Dashboard from '../pages/Dashboard';
+import UpdateStudent from '../pages/UpdateStudent';
 const MainContent = ({ selected }) => {
     switch (selected) {
         case 'dashboard':
@@ -11,6 +12,8 @@ const MainContent = ({ selected }) => {
             return <StudentRegistration />;
         case 'listStudent':
             return <StudentList/>;
+        case "settingS":
+            return <UpdateStudent/>
         case 'logout':
             return <SignOut/>;
         default:

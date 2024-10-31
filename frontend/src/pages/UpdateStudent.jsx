@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import "./studentRegister.css";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import SuccessRegistration from '../components/SuccessRegisteration'; 
+import { FiSearch } from 'react-icons/fi';
+import SuccessUpdate from '../components/SuccessUpdate'; 
+import SuccessDelete from '../components/SuccessDelet'; 
+import "./UpdateStudent.css";
 
 const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
@@ -28,72 +30,172 @@ const schema = yup.object().shape({
     courses: yup.array().min(1, 'At least one course must be selected'), 
 });
 
-const StudentRegistration = () => {
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+const UpdateStudent = () => {
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm({
         resolver: yupResolver(schema)
     });
 
-    const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [students, setStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedStudent, setSelectedStudent] = useState(null);
+    const [courses, setCourses] = useState([]);
     const [selectedCourses, setSelectedCourses] = useState([]);
-    const [success, setSuccess] = useState(false);
-    const [serverError, setServerError] = useState(null); 
+    const [courseSearchTerm, setCourseSearchTerm] = useState('');
+    const [filteredCourses, setFilteredCourses] = useState([]);
+    const [successUpdate, setSuccessUpdate] = useState(false);
+    const [successDelete, setSuccessDelete] = useState(false);
+    const [serverError, setServerError] = useState(null);
 
     useEffect(() => {
         const fetchCourses = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/api/v1/course/");
                 setCourses(response.data); 
+                setFilteredCourses(response.data);
             } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
+                console.error(err);
             }
         };
         fetchCourses();
     }, []);
 
-    const onSubmit = async (data) => {
+    const handleSearch = async (query) => {
+        if (!query) {
+            setStudents([]);
+            return;
+        }
         try {
-            const response = await axios.post("http://localhost:5000/api/v1/student/", data);
-            console.log("Data submitted successfully:", response.data);
-            setSuccess(true); 
-            setServerError(null); 
+            const response = await axios.get(`http://localhost:5000/api/v1/student/search?query=${query}`);
+            setStudents(response.data);
         } catch (err) {
-            console.error("Error submitting data:", err);
-            if (err.response && err.response.data) {
-                setServerError(err.response.data.message); 
+            console.error("Error fetching students:", err);
+        }
+    };
+
+    const handleStudentSelect = (student) => {
+        setSelectedStudent(student);
+        setValue('firstName', student.firstName);
+        setValue('middleName', student.middleName);
+        setValue('lastName', student.lastName);
+        setValue('email', student.email);
+        setValue('phoneNumber', student.phoneNumber);
+        setValue('gender', student.gender);
+        setValue('dateOfBirth', student.dateOfBirth.split('T')[0]);
+        setValue('address.street', student.address.street);
+        setValue('address.city', student.address.city);
+        setValue('address.country', student.address.country);
+        setValue('emergencyContact.name', student.emergencyContact.name);
+        setValue('emergencyContact.phoneNumber', student.emergencyContact.phoneNumber);
+        setValue('emergencyContact.relationship', student.emergencyContact.relationship);
+        setValue('courses', student.courses);
+
+        setSearchTerm('');
+        setStudents([]);
+        setSelectedCourses(student.courses);
+    };
+
+    const handleCourseSearch = (query) => {
+        if (!query) {
+            setFilteredCourses(courses);
+        } else {
+            const filtered = courses.filter(course =>
+                course.title.toLowerCase().includes(query.toLowerCase())
+            );
+            setFilteredCourses(filtered);
+        }
+    };
+
+    const handleCourseSelect = (courseId) => {
+        setSelectedCourses(prevSelected => {
+            if (prevSelected.includes(courseId)) {
+                return prevSelected.filter(id => id !== courseId);
             } else {
-                setServerError("An unexpected error occurred."); 
+                return [...prevSelected, courseId];
+            }
+        });
+    };
+
+    const onSubmit = async (data) => {
+        const formData = {
+            ...data,
+            courses: selectedCourses,
+        };
+        try {
+            await axios.put(`http://localhost:5000/api/v1/student/${selectedStudent._id}`, formData);
+            setSuccessUpdate(true);
+            setServerError(null);
+            reset(); 
+            setSelectedStudent(null);
+            setSelectedCourses([]); 
+        } catch (err) {
+            console.error("Error updating student:", err);
+            if (err.response && err.response.data) {
+                setServerError(err.response.data.message);
+            } else {
+                setServerError("An unexpected error occurred.");
             }
         }
     };
 
-    if (loading) return <p>Loading courses...</p>;
-    if (error) return <p>Error loading courses: {error.message}</p>;
-
-    const filteredCourses = courses.filter(course =>
-        course.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    const handleCourseSelect = (courseId) => {
-        setSelectedCourses(prev => {
-            const newSelectedCourses = prev.includes(courseId)
-                ? prev.filter(id => id !== courseId)
-                : [...prev, courseId];
-
-            setValue('courses', newSelectedCourses);
-            return newSelectedCourses;
-        });
+    const handleDelete = async (studentId) => {
+        try {
+            await axios.delete(`http://localhost:5000/api/v1/student/deleteStudent/${studentId}`);
+            setSuccessDelete(true);
+            setStudents(students.filter(student => student._id !== studentId));
+        } catch (err) {
+            console.error("Error deleting student:", err);
+            setServerError("Failed to delete student.");
+        }
     };
 
-    return (
-        <motion.div className='register'>
-            {success && <SuccessRegistration />} 
+    if (successUpdate) {
+        return <SuccessUpdate />; 
+    }
 
-            {!success && (
+    if (successDelete) {
+        return <SuccessDelete />; 
+    }
+
+    return (
+        <motion.div className='update'>
+            
+            <div className="searchContainer">
+            <h3>To update/delete student ?</h3>
+            
+            <input
+                    className='search'
+                    type="text"
+                    placeholder="Search by name or email..."
+                    value={searchTerm}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                        handleSearch(e.target.value);
+                    }}
+                />
+                <FiSearch className="searchIcon" />
+
+           
+
+            </div>
+
+
+            {students.length > 0 && (
+                <ul className="studentList">
+                    {students.map(student => (
+                        <li key={student._id} className="studentItem">
+                            {student.firstName} {student.lastName} - {student.email}
+                            <div className='updateDelete'>
+                            <button onClick={() => handleStudentSelect(student)}>Update</button>
+                            <button className='delete' onClick={() => handleDelete(student._id)}>Delete</button>
+
+                            </div>
+                            
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {selectedStudent && (
                 <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
                     <div className="cards">
                         <div className='RegiCard'>
@@ -146,9 +248,12 @@ const StudentRegistration = () => {
                             <h3>Courses</h3>
                             <input
                                 type="text"
-                                placeholder="Search courses..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                placeholder="Search courses by title..."
+                                value={courseSearchTerm}
+                                onChange={(e) => {
+                                    setCourseSearchTerm(e.target.value);
+                                    handleCourseSearch(e.target.value);
+                                }}
                             />
                             <div className="course-dropdown">
                                 {filteredCourses.map(course => (
@@ -167,12 +272,12 @@ const StudentRegistration = () => {
                             {errors.courses && <p className="error">{errors.courses.message}</p>}
                         </div>
                     </div>
-                    {serverError && <p className="error server-error">{serverError}</p>} 
-                    <button className="registerButton" type="submit">Register</button>
+                    {serverError && <p className="error">{serverError}</p>}
+                    <button className="registerButton" type="submit">Update</button>
                 </form>
             )}
         </motion.div>
     );
 };
 
-export default StudentRegistration;
+export default UpdateStudent;
