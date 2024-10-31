@@ -160,12 +160,11 @@ const UpdateStudent = () => {
         <motion.div className='update'>
             
             <div className="searchContainer">
-            <h3>To update/delete student ?</h3>
-            
+         
             <input
                     className='search'
                     type="text"
-                    placeholder="Search by name or email..."
+                    placeholder="Search student by name or email..."
                     value={searchTerm}
                     onChange={(e) => {
                         setSearchTerm(e.target.value);

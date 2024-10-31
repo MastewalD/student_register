@@ -44,7 +44,7 @@ const BarChart = ({ data = { labels: [], datasets: [] } }) => {
 
     return (
         <div>
-            <Bar data={chartData} options={options}  width={400} height={150}/>
+            <Bar data={chartData} options={options}  width={300} height={100}/>
         </div>
     );
 };

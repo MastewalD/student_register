@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainComponent';
-import { FaBars } from 'react-icons/fa'; 
-import { FaTimes } from 'react-icons/fa';
-
+import { FaBars, FaTimes } from 'react-icons/fa';
 import './Home.css';
 
 const Home = () => {
@@ -21,8 +19,8 @@ const Home = () => {
                 <div className="toggle-button" onClick={toggleSidebar} aria-label="Toggle Sidebar">
                     {isSidebarExpanded ? <FaBars /> : <FaTimes />}
                 </div>
-                <div className={`content ${isSidebarExpanded ? 'expanded' : 'collapsed'}`}>
-                    <MainContent selected={selected} />
+                <div className={`content ${isSidebarExpanded ? '' : 'collapsed'}`}>
+                    <MainContent selected={selected} isSidebarExpanded={isSidebarExpanded} />
                 </div>
             </div>
         </div>
