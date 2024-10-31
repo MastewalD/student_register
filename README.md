@@ -29,7 +29,7 @@ MD COLLEGE Project is a web application designed for managing student registrati
 
 ## API Documentation
 
-You can view and interact with the API using Postman: [MD College API Collection](https://www.postman.com/yourcollectionlink)
+
 
 ## Live Deployment
 
