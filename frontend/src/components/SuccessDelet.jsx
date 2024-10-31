@@ -14,7 +14,7 @@ const SuccessDelet = () => {
              transition={{ duration:1,  type: 'spring', stiffness: 220 }}>
                 <div className="card">
                 <h3>Student Deleted Successfully!</h3>
-                <p>You have successfully delete student.</p>
+               
                 <button onClick={handleClick}>
                 Go to Dashboard
                 </button >

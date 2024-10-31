@@ -116,10 +116,17 @@ const UpdateStudent = () => {
     };
 
     const onSubmit = async (data) => {
+        // Validate selectedCourses array before sending data
+        if (selectedCourses.length === 0) {
+            setServerError('At least one course must be selected.');
+            return;
+        }
+
         const formData = {
             ...data,
             courses: selectedCourses,
         };
+
         try {
             await axios.put(`http://localhost:5000/api/v1/student/${selectedStudent._id}`, formData);
             setSuccessUpdate(true);
@@ -158,10 +165,8 @@ const UpdateStudent = () => {
 
     return (
         <motion.div className='update'>
-            
             <div className="searchContainer">
-         
-            <input
+                <input
                     className='search'
                     type="text"
                     placeholder="Search student by name or email..."
@@ -172,11 +177,7 @@ const UpdateStudent = () => {
                     }}
                 />
                 <FiSearch className="searchIcon" />
-
-           
-
             </div>
-
 
             {students.length > 0 && (
                 <ul className="studentList">
@@ -184,11 +185,9 @@ const UpdateStudent = () => {
                         <li key={student._id} className="studentItem">
                             {student.firstName} {student.lastName} - {student.email}
                             <div className='updateDelete'>
-                            <button onClick={() => handleStudentSelect(student)}>Update</button>
-                            <button className='delete' onClick={() => handleDelete(student._id)}>Delete</button>
-
+                                <button onClick={() => handleStudentSelect(student)}>Update</button>
+                                <button className='delete' onClick={() => handleDelete(student._id)}>Delete</button>
                             </div>
-                            
                         </li>
                     ))}
                 </ul>

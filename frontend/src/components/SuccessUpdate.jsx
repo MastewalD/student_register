@@ -14,7 +14,7 @@ const SuccessUpdate = () => {
              transition={{ duration:1,  type: 'spring', stiffness: 220 }}>
                 <div className="card">
                 <h3>Updated Successful!</h3>
-                <p>You have updated successfully.</p>
+    
                 <button onClick={handleClick}>
                 Go to Dashboard
                 </button >

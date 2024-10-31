@@ -1,4 +1,3 @@
-// routes/auth.js
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -6,7 +5,6 @@ const User = require('../models/userModel');
 const router = express.Router();
 require("dotenv").config()
 
-// Register
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -18,7 +16,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -36,7 +33,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Protected route example
 router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({ message: 'Protected data', user: req.user });
 });
