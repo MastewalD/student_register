@@ -42,7 +42,7 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
     git clone https://github.com/MastewalD/student_register.git
     cd student-register
     ```
-3. **Create a `.env` file** in the root directory.
+3. **Create a `.env` file** in the root directory in backend folder .
 4. **Set up a MongoDB server** (local installation or MongoDB Atlas) and obtain the MongoDB URI.
 5. **Add environment variables** to the `.env` file:
     - `MONGO_URI`: Your MongoDB connection string.
