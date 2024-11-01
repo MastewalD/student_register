@@ -71,7 +71,7 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
 3. **Access the application** at [http://127.0.0.1:5173/].
 
 4. **Admin User Credentials**
-   -create admin user 
+   -create admin user using this route on postmon (i didnt create create user page use this route to create admin on postmon "localhost:5000/api/v1/user/register/")
 
 ### Prerequisites
 
