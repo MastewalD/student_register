@@ -68,9 +68,8 @@ You can access the deployed project here: [MD College Live](https://dreamy-sprit
     ```
 3. **Access the application** at [http://127.0.0.1:5173/].
 
-4. **Admin User Credentials** (created in the database):
-    - **Username**: `admin`
-    - **Password**: `password`
+4. **Admin User Credentials**
+   -create admin user 
 
 ### Prerequisites
 
