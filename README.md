@@ -31,6 +31,8 @@ MD COLLEGE Project is a web application designed for managing student registrati
 
 
 ## Live Deployment
+-username: admin
+-password: password
 
 You can access the deployed project here: [MD College Live](https://dreamy-sprite-be3c9d.netlify.app/).
 
